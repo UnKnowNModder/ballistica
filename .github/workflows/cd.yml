@@ -2,7 +2,7 @@ name: CD
 
 on:
   # Run on pushes and pull-requests
-  push:
+  # push:
   pull_request:
 
 jobs:
