@@ -1472,7 +1472,7 @@ auto ClassicAppMode::ShouldAnnouncePartyJoinsAndLeaves() -> bool {
 
   // At the moment we don't announce these for public internet parties.. (too
   // much noise).
-  return !public_party_enabled();
+  return false;
 }
 
 auto ClassicAppMode::IsPlayerBanned(const scene_v1::PlayerSpec& spec) -> bool {
