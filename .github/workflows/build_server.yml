@@ -2,7 +2,6 @@ name: Build Ballistica Server (Release)
 
 on:
   workflow_dispatch:
-  push:
     branches:
       - main
 
@@ -37,7 +36,8 @@ jobs:
 
     - name: Build BallisticaKit headless server in Release mode
       run: CMAKE_BUILD_TYPE=Release make cmake-server-build
-
+    - name: List Builds
+      run: ls -R build/cmake/server-release/staged
     - name: Upload built server artifact
       uses: actions/upload-artifact@v4
       with:
