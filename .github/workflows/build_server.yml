@@ -35,12 +35,11 @@ jobs:
         sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
         python3 --version
 
-    - name: Build Ballistica server (Release)
-      run: |
-        CMAKE_BUILD_TYPE=Release make cmake-server-build
+    - name: Build BallisticaKit headless server in Release mode
+      run: CMAKE_BUILD_TYPE=Release make cmake-server-build
 
-    - name: Upload ba_server artifact
+    - name: Upload built server artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ba_server
-        path: build/ba_server
+        name: ballisticakit-server-release
+        path: build/cmake/server-release/staged/ballisticakit_server
