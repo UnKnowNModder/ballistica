@@ -37,7 +37,7 @@ jobs:
 
     - name: Build Ballistica server (Release)
       run: |
-        CMAKE_BUILD_TYPE=Release make cmake-server
+        CMAKE_BUILD_TYPE=Release make cmake-server-build
 
     - name: Upload ba_server artifact
       uses: actions/upload-artifact@v4
