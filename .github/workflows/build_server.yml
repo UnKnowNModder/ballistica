@@ -42,4 +42,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ballisticakit-server-release
-        path: build/cmake/server-release/staged/ballisticakit_headless
+        path: build/cmake/server-release/staged
