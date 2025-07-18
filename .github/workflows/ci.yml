@@ -3,11 +3,8 @@ name: CI
 on:
   # Run on pushes, pull-requests, and also once per day
   # (in case deps change under us, etc.)
-  push:
+  # push:
   pull_request:
-  schedule:
-      # Note: '*' is a special character in YAML so we have to quote the str.
-      - cron: '0 12 * * *'
         
 jobs:
 
