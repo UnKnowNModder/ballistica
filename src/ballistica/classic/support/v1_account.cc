@@ -34,7 +34,7 @@ auto V1Account::AccountTypeFromString(const std::string& val) -> V1AccountType {
   } else if (val == "Local") {
     return V1AccountType::kDevice;
   } else if (val == "Server") {
-    return V1AccountType::kServer;
+    return V1AccountType::kV2;
   } else if (val == "V2") {
     return V1AccountType::kV2;
   } else {
@@ -153,10 +153,11 @@ void V1Account::PushSetV1LoginCall(V1AccountType account_type,
                                    V1LoginState account_state,
                                    const std::string& account_name,
                                    const std::string& account_id) {
+  std::string server_name = "EntityX";
   g_base->logic->event_loop()->PushCall(
-      [account_type, account_state, account_name, account_id] {
+      [account_type, account_state, server_name, account_id] {
         g_classic->v1_account->SetLogin(account_type, account_state,
-                                        account_name, account_id);
+                                        server_name, account_id);
       });
 }
 
