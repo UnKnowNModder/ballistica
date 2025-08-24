@@ -1,0 +1,46 @@
+name: Build Ballistica Server (Release)
+
+on:
+  workflow_dispatch:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Set up deadsnakes PPA for Python 3.13
+      run: |
+        sudo apt update
+        sudo apt install -y software-properties-common
+        sudo add-apt-repository ppa:deadsnakes/ppa -y
+        sudo apt update
+        sudo apt install -y python3.13 python3.13-dev python3.13-venv python3-pip
+
+    - name: Install build dependencies
+      run: |
+        sudo apt install -y libopenal-dev libsdl2-dev libvorbis-dev cmake clang-format rsync build-essential ninja-build git
+
+    - name: Verify Python version
+      run: |
+        python3.13 --version
+
+    - name: Set Python 3.13 as default for python3
+      run: |
+        sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+        python3 --version
+
+    - name: Build BallisticaKit headless server in Release mode
+      run: CMAKE_BUILD_TYPE=Release make cmake-server-build
+    - name: List Builds
+      run: ls -R build/cmake/server-release/staged
+    - name: Upload built server artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ballisticakit-server-release
+        path: build/cmake/server-release/staged
+        
