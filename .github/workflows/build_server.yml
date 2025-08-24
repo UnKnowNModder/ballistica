@@ -3,7 +3,7 @@ name: Build Ballistica Server (Release)
 on:
   workflow_dispatch:
     branches:
-      - master
+      - main
 
 jobs:
   build:
